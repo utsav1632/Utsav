@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+// Recursive function to calculate power using exponentiation by squaring
+long long power(int base, int exponent) {
+    // Base Case
+    if (exponent == 0)
+        return 1;
+
+    // If the exponent is even
+    if (exponent % 2 == 0) {
+        long long halfPower = power(base, exponent / 2);
+        return halfPower * halfPower;
+    } 
+    // If the exponent is odd
+    else {
+        return base * power(base, exponent - 1);
+    }
+}
+
+int main() {
+    int base, exponent;
+
+    // Taking input from the user
+    cout << "Enter base: ";
+    cin >> base;
+    cout << "Enter exponent: ";
+    cin >> exponent;
+
+    // Handling negative exponents
+    if (exponent < 0) {
+        cout << "Result: " << 1.0 / power(base, -exponent) << endl;
+    } else {
+        cout << "Result: " << power(base, exponent) << endl;
+    }
+
+    return 0;
+}
